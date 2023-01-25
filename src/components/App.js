@@ -4,7 +4,9 @@ import styled from "styled-components"
 import Home from "./Home"
 import Cadastro from "./Cadastro"
 import Login from "./Login"
-import AuthContext from "../contexts/AuthContext"
+import AuthContext from "../contexts/AuthContext.js"
+import Produtos from "./Produtos"
+import Servicos from "./Servicos"
 
 export default function App() {
     const [ userData, setUserData ] = useState(
@@ -22,12 +24,11 @@ export default function App() {
         <BrowserRouter>
             <ContainerStyled>
                 <Routes>
-                    <Route path="/home" element={<Home />} />
+                    <Route path="/" element={<Home />} />
                     <Route path="/produtos" element={<Produtos />} />
-                    <Route path="/servicos" element={<Serviços />} />
+                    <Route path="/servicos" element={<Servicos />} />
                     <Route path="/cadastro" element={<Cadastro />} />
                     <Route path="/login" element={<Login />} />
-                    
                 </Routes>
             </ContainerStyled>
         </BrowserRouter>
@@ -35,4 +36,8 @@ export default function App() {
  )
 }
 
-const ContainerStyled = styled.div``
+const ContainerStyled = styled.div`
+    width: 100%;
+    min-height: 100vh;
+    background-color: #FEF9EA;
+`
