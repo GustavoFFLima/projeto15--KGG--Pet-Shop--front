@@ -23,8 +23,11 @@ export default function App() {
             <ContainerStyled>
                 <Routes>
                     <Route path="/home" element={<Home />} />
+                    <Route path="/produtos" element={<Produtos />} />
+                    <Route path="/servicos" element={<Serviços />} />
                     <Route path="/cadastro" element={<Cadastro />} />
                     <Route path="/login" element={<Login />} />
+                    
                 </Routes>
             </ContainerStyled>
         </BrowserRouter>
