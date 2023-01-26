@@ -1,6 +1,6 @@
 import Navbar from "../navbar/Navbar"
 
-export default function Cadastro() {
+export default function Carrinho() {
     return(
         <>
         <Navbar />
