@@ -1,12 +1,15 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React, { useState } from "react";
 import styled from "styled-components"
-import Home from "./Home"
-import Cadastro from "./Cadastro"
-import Login from "./Login"
+
+
+
 import AuthContext from "../contexts/AuthContext.js"
-import Produtos from "./Produtos"
-import Servicos from "./Servicos"
+import Home from "../components/pages/Home"
+import Login from "../components/pages/Login"
+import Cadastro from "../components/pages/Cadastro"
+import Produtos from "../components/pages/Produtos"
+import Servicos from "../components/pages/Servicos"
 
 export default function App() {
     const [ userData, setUserData ] = useState(
