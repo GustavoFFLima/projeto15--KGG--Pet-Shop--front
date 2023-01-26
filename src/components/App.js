@@ -2,14 +2,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React, { useState } from "react";
 import styled from "styled-components"
 
-
-
 import AuthContext from "../contexts/AuthContext.js"
 import Home from "../components/pages/Home"
 import Login from "../components/pages/Login"
 import Cadastro from "../components/pages/Cadastro"
 import Produtos from "../components/pages/Produtos"
 import Servicos from "../components/pages/Servicos"
+import Carrinho from "../components/pages/Carrinho";
 
 export default function App() {
     const [ userData, setUserData ] = useState(
@@ -32,6 +31,7 @@ export default function App() {
                     <Route path="/servicos" element={<Servicos />} />
                     <Route path="/cadastro" element={<Cadastro />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/carrinho" element={<Carrinho />} />
                 </Routes>
             </ContainerStyled>
         </BrowserRouter>
@@ -40,7 +40,7 @@ export default function App() {
 }
 
 const ContainerStyled = styled.div`
-    width: 100%;
+    max-width: 100%;
     min-height: 100vh;
     background-color: #FEF9EA;
 `

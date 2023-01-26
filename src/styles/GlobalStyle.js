@@ -47,9 +47,8 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Fira Sans', sans-serif;
     box-sizing: border-box;
   }
-  h1{
+  h1, h2{
     font-family: 'Fira Sans', sans-serif;
     font-size: 18px;
-
   }
 `;
