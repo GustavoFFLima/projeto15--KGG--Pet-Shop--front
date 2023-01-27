@@ -107,6 +107,10 @@ export default function Servicos() {
 
     }, [])
 
+    function selecionados (item) {
+        setItensSelecionados(item)
+    }
+
 
     return(
         <>
@@ -120,7 +124,7 @@ export default function Servicos() {
                 <Nome>{item.nome}</Nome>
                 <Descricao>{item.descrição}</Descricao>
                 <Preço>{item.preço.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</Preço>
-                <Adc>
+                <Adc onClick={() => selecionados(item) }>
                     <MdAddCircle/>
                     <p>Adicionar ao carrinho</p>
                 </Adc>
