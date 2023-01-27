@@ -2,6 +2,7 @@ import Navbar from "../navbar/Navbar"
 import styled from "styled-components"
 import {MdAddCircle} from 'react-icons/md'
 import React, { useState, useContext, useEffect } from 'react';
+import axios from 'axios';
 import ProdutosContext from "../../contexts/ProdutosContext.js"
 
 import { 
@@ -12,72 +13,76 @@ import {
 } from "../../styles/Tema.js" 
  
 
-const MOCKPRODUTOS= [
-    {
-        imagem: 'https://carrefourbr.vtexassets.com/arquivos/ids/50142829/a206ed90116148029ca96330f6ecfcaf.jpg?v=637873631273800000',
-        nome: 'Ração',
-        alvo: 'cães',
-        preço: 104,
-        estoque: 25,
-    },
-    {
-        imagem: 'https://carrefourbr.vtexassets.com/arquivos/ids/50142829/a206ed90116148029ca96330f6ecfcaf.jpg?v=637873631273800000',
-        nome: 'Roupa',
-        alvo: 'cães',
-        preço: 54.90,
-        estoque: 25,
-    },
-    {
-        imagem: 'https://carrefourbr.vtexassets.com/arquivos/ids/50142829/a206ed90116148029ca96330f6ecfcaf.jpg?v=637873631273800000',
-        nome: 'Coleira',
-        alvo: 'cães',
-        preço: 45,
-        estoque: 25,
-    },
-    {
-        imagem: 'https://carrefourbr.vtexassets.com/arquivos/ids/50142829/a206ed90116148029ca96330f6ecfcaf.jpg?v=637873631273800000',
-        nome: 'Brinquedo',
-        alvo: 'cães',
-        preço: 23.50,
-        estoque: 25,
-    },
-    {
-        imagem: 'https://carrefourbr.vtexassets.com/arquivos/ids/50142829/a206ed90116148029ca96330f6ecfcaf.jpg?v=637873631273800000',
-        nome: 'Mordedor',
-        alvo: 'cães',
-        preço: 15,
-        estoque: 25,
-    },
-    {
-        imagem: 'https://carrefourbr.vtexassets.com/arquivos/ids/50142829/a206ed90116148029ca96330f6ecfcaf.jpg?v=637873631273800000',
-        nome: 'Osso Natural',
-        alvo: 'cães',
-        preço: 7.50,
-        estoque: 25,
-    },
+// const MOCKPRODUTOS= [
+//     {
+//         imagem: 'https://carrefourbr.vtexassets.com/arquivos/ids/50142829/a206ed90116148029ca96330f6ecfcaf.jpg?v=637873631273800000',
+//         nome: 'Ração',
+//         alvo: 'cães',
+//         preço: 104,
+//         estoque: 25,
+//     },
+//     {
+//         imagem: 'https://carrefourbr.vtexassets.com/arquivos/ids/50142829/a206ed90116148029ca96330f6ecfcaf.jpg?v=637873631273800000',
+//         nome: 'Roupa',
+//         alvo: 'cães',
+//         preço: 54.90,
+//         estoque: 25,
+//     },
+//     {
+//         imagem: 'https://carrefourbr.vtexassets.com/arquivos/ids/50142829/a206ed90116148029ca96330f6ecfcaf.jpg?v=637873631273800000',
+//         nome: 'Coleira',
+//         alvo: 'cães',
+//         preço: 45,
+//         estoque: 25,
+//     },
+//     {
+//         imagem: 'https://carrefourbr.vtexassets.com/arquivos/ids/50142829/a206ed90116148029ca96330f6ecfcaf.jpg?v=637873631273800000',
+//         nome: 'Brinquedo',
+//         alvo: 'cães',
+//         preço: 23.50,
+//         estoque: 25,
+//     },
+//     {
+//         imagem: 'https://carrefourbr.vtexassets.com/arquivos/ids/50142829/a206ed90116148029ca96330f6ecfcaf.jpg?v=637873631273800000',
+//         nome: 'Mordedor',
+//         alvo: 'cães',
+//         preço: 15,
+//         estoque: 25,
+//     },
+//     {
+//         imagem: 'https://carrefourbr.vtexassets.com/arquivos/ids/50142829/a206ed90116148029ca96330f6ecfcaf.jpg?v=637873631273800000',
+//         nome: 'Osso Natural',
+//         alvo: 'cães',
+//         preço: 7.50,
+//         estoque: 25,
+//     },
     
     
    
-]
+// ]
 
 
 export default function Produtos() {
     let { itensSelecionados, setItensSelecionados } = useContext(ProdutosContext);
-    // const [produtos, setProdutos] = useState([]);  
+    const [produtos, setProdutos] = useState([]);  
 
 
-    // useEffect(() => {
+    useEffect(() => {
         
 
-    //     const promise = axios.get(`http://localhost:5000/produtos`);
+        const promise = axios.get(`http://localhost:5000/produtos`);
         
 
-    //     promise.then(obj => {
-    //         setProdutos(obj.data);
-    //     })
-    //     promise.catch((err) => console.log(err.response.data.message))
+        promise.then(obj => {
+            setProdutos(obj.data);
+        })
+        promise.catch((err) => console.log(err.response.data.message))
 
-    // }, [])
+    }, [])
+
+    function selecionados (item) {
+        setItensSelecionados(item)
+    }
 
     
     return(
@@ -86,13 +91,13 @@ export default function Produtos() {
         <Container>
             <Titulo>Produtos para seu pet</Titulo>
             <ListaProdutos>
-                {MOCKPRODUTOS.map(item =>
-                    <Produtinho>
+                {produtos.map(item =>
+                    <Produtinho key={item._id}>
                 <Imagem src={item.imagem}/>
                 <Nome>{item.nome}</Nome>
                 <Alvo>{item.alvo}</Alvo>
                 <Preço>{item.preço.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</Preço>
-                <Adc>
+                <Adc onClick={() => selecionados(item) }>
                     <MdAddCircle/>
                     <p>Adicionar ao carrinho</p>
                 </Adc>
