@@ -178,6 +178,7 @@ const Nome = styled.div `
 font-weight: 400;
 font-size: 24px;
 color: ${cor_primaria};
+text-align: center;
 `
 
 const Descricao = styled.div `
@@ -185,6 +186,7 @@ const Descricao = styled.div `
     font-size: 14px;
     color: ${cor_primaria};
     opacity: 60%;
+    text-align: center;
     
 `
 

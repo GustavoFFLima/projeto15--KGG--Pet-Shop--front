@@ -91,7 +91,8 @@ export default function Produtos() {
         <Container>
             <Titulo>Produtos para seu pet</Titulo>
             <ListaProdutos>
-                {produtos.map(item =>
+                {produtos.map(item => item.estoque >0 ?
+                (
                     <Produtinho key={item._id}>
                 <Imagem src={item.imagem}/>
                 <Nome>{item.nome}</Nome>
@@ -101,7 +102,20 @@ export default function Produtos() {
                     <MdAddCircle/>
                     <p>Adicionar ao carrinho</p>
                 </Adc>
-                </Produtinho>)}
+                </Produtinho>
+                ) : (
+                    <Produtinho key={item._id}>
+                <Imagem src={item.imagem}/>
+                <Nome>{item.nome}</Nome>
+                <Alvo>{item.alvo}</Alvo>
+                <Preço>ESGOTADO</Preço>
+                <Adc>
+                </Adc>
+                </Produtinho>
+
+
+                )
+                )}
             </ListaProdutos>
         </Container>
         </>
@@ -152,6 +166,8 @@ const Nome = styled.div `
 font-weight: 400;
 font-size: 24px;
 color: ${cor_primaria};
+text-align: center;
+
 `
 
 const Alvo = styled.div `
@@ -159,6 +175,7 @@ const Alvo = styled.div `
     font-size: 14px;
     color: ${cor_primaria};
     opacity: 60%;
+    text-align: center;
 `
 
 const Preço = styled.div `
@@ -179,4 +196,5 @@ const Adc = styled.div `
         font-weight: 800;
 
     }
+    
 `
