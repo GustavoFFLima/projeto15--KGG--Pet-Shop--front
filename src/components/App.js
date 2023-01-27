@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import styled from "styled-components"
 
 import AuthContext from "../contexts/AuthContext.js"
+import ProdutosContext from "../contexts/ProdutosContext.js"
+
 import Home from "../components/pages/Home"
 import Login from "../components/pages/Login"
 import Cadastro from "../components/pages/Cadastro"
@@ -21,8 +23,19 @@ export default function App() {
         }
     )
 
+        let [ itensSelecionados, setItensSelecionados ] = useState(
+        {
+            imagem: "",
+            nome: "",
+            preço: "",
+            estoque: "",
+        }
+    )
+
+
  return (
     <AuthContext.Provider value={{ userData, setUserData }}>
+        <ProdutosContext.Provider value ={{itensSelecionados, setItensSelecionados}}>
         <BrowserRouter>
             <ContainerStyled>
                 <Routes>
@@ -35,6 +48,7 @@ export default function App() {
                 </Routes>
             </ContainerStyled>
         </BrowserRouter>
+        </ProdutosContext.Provider>
     </AuthContext.Provider>
  )
 }
