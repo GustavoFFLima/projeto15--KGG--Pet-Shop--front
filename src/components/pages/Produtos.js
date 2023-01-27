@@ -1,49 +1,58 @@
 import Navbar from "../navbar/Navbar"
 import styled from "styled-components"
 import {MdAddCircle} from 'react-icons/md'
+import React, { useState, useContext, useEffect } from 'react';
+import ProdutosContext from "../../contexts/ProdutosContext.js"
+
+import { 
+    cor_primaria,
+    cor_terciaria,
+    cor_quartenaria,
+    cor_quintenaria
+} from "../../styles/Tema.js" 
  
 
 const MOCKPRODUTOS= [
     {
         imagem: 'https://carrefourbr.vtexassets.com/arquivos/ids/50142829/a206ed90116148029ca96330f6ecfcaf.jpg?v=637873631273800000',
-        nome: 'ração',
+        nome: 'Ração',
         alvo: 'cães',
-        preço: 55,
+        preço: 104,
         estoque: 25,
     },
     {
         imagem: 'https://carrefourbr.vtexassets.com/arquivos/ids/50142829/a206ed90116148029ca96330f6ecfcaf.jpg?v=637873631273800000',
-        nome: 'ração',
+        nome: 'Roupa',
         alvo: 'cães',
-        preço: 55,
+        preço: 54.90,
         estoque: 25,
     },
     {
         imagem: 'https://carrefourbr.vtexassets.com/arquivos/ids/50142829/a206ed90116148029ca96330f6ecfcaf.jpg?v=637873631273800000',
-        nome: 'ração',
+        nome: 'Coleira',
         alvo: 'cães',
-        preço: 55,
+        preço: 45,
         estoque: 25,
     },
     {
         imagem: 'https://carrefourbr.vtexassets.com/arquivos/ids/50142829/a206ed90116148029ca96330f6ecfcaf.jpg?v=637873631273800000',
-        nome: 'ração',
+        nome: 'Brinquedo',
         alvo: 'cães',
-        preço: 55,
+        preço: 23.50,
         estoque: 25,
     },
     {
         imagem: 'https://carrefourbr.vtexassets.com/arquivos/ids/50142829/a206ed90116148029ca96330f6ecfcaf.jpg?v=637873631273800000',
-        nome: 'ração',
+        nome: 'Mordedor',
         alvo: 'cães',
-        preço: 55,
+        preço: 15,
         estoque: 25,
     },
     {
         imagem: 'https://carrefourbr.vtexassets.com/arquivos/ids/50142829/a206ed90116148029ca96330f6ecfcaf.jpg?v=637873631273800000',
-        nome: 'ração',
+        nome: 'Osso Natural',
         alvo: 'cães',
-        preço: 55,
+        preço: 7.50,
         estoque: 25,
     },
     
@@ -53,6 +62,24 @@ const MOCKPRODUTOS= [
 
 
 export default function Produtos() {
+    let { itensSelecionados, setItensSelecionados } = useContext(ProdutosContext);
+    // const [produtos, setProdutos] = useState([]);  
+
+
+    // useEffect(() => {
+        
+
+    //     const promise = axios.get(`http://localhost:5000/produtos`);
+        
+
+    //     promise.then(obj => {
+    //         setProdutos(obj.data);
+    //     })
+    //     promise.catch((err) => console.log(err.response.data.message))
+
+    // }, [])
+
+    
     return(
         <>
         <Navbar />
@@ -73,7 +100,9 @@ export default function Produtos() {
             </ListaProdutos>
         </Container>
         </>
-    )
+        
+    ) 
+
 }
 
 const Container = styled.div `
@@ -86,7 +115,7 @@ flex-direction: column;
 
 `
 const Titulo = styled.div `
-color: #94794d;
+color: ${cor_terciaria};
 font-size: 40px;
 margin-bottom: 30px;
 `
@@ -103,7 +132,7 @@ const Produtinho = styled.div `
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    color: #ab8262;
+    color: ${cor_quintenaria};
     width: 215px;
     height: 260px;
 `
@@ -116,14 +145,14 @@ const Imagem = styled.img `
 
 const Nome = styled.div `
 font-weight: 400;
-font-size: 22px;
-color: #ab8262;
+font-size: 24px;
+color: ${cor_primaria};
 `
 
 const Alvo = styled.div `
     font-weight: 400;
     font-size: 14px;
-    color: #ab8262;
+    color: ${cor_primaria};
     opacity: 60%;
 `
 
@@ -131,8 +160,7 @@ const Preço = styled.div `
     font-weight: 700;
     font-size: 15px;
     line-height: 15px;
-    color: #b8625f;
-
+    color: ${cor_quartenaria};
     `
 
 const Adc = styled.div `
@@ -142,7 +170,7 @@ const Adc = styled.div `
     cursor: pointer;
     p{
         font-size: 15px;
-        color: #ab8262;
+        color: ${cor_primaria};
         font-weight: 800;
 
     }
